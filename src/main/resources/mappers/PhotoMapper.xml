@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.egov.graph.dao.PhotoMapper" >
+  <resultMap id="BaseResultMap" type="com.egov.graph.model.Photo" >
+    <constructor >
+      <idArg column="ID" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="TITLE" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="URL" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pic_small_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CTIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="PARENTID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="KEYWORD" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ISCHECK" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="AUTHORID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ISDEL" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="WFROM" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="VTIME" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="WIDTH" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="HEIGHT" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="SIZES" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="ISRECOMMEND" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="ADMINID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="LOVETIME" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TITLE, URL, pic_small_url, CTIME, PARENTID, KEYWORD, ISCHECK, AUTHORID, ISDEL, 
+    WFROM, VTIME, WIDTH, HEIGHT, SIZES, ISRECOMMEND, ADMINID, LOVETIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from photo
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from photo
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.egov.graph.model.Photo" >
+    insert into photo (ID, TITLE, URL, 
+      pic_small_url, CTIME, PARENTID, 
+      KEYWORD, ISCHECK, AUTHORID, 
+      ISDEL, WFROM, VTIME, WIDTH, 
+      HEIGHT, SIZES, ISRECOMMEND, 
+      ADMINID, LOVETIME)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{picSmallUrl,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}, #{parentid,jdbcType=INTEGER}, 
+      #{keyword,jdbcType=VARCHAR}, #{ischeck,jdbcType=BIT}, #{authorid,jdbcType=INTEGER}, 
+      #{isdel,jdbcType=BIT}, #{wfrom,jdbcType=VARCHAR}, #{vtime,jdbcType=INTEGER}, #{width,jdbcType=INTEGER}, 
+      #{height,jdbcType=INTEGER}, #{sizes,jdbcType=BIGINT}, #{isrecommend,jdbcType=BIT}, 
+      #{adminid,jdbcType=INTEGER}, #{lovetime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.egov.graph.model.Photo" >
+    insert into photo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="picSmallUrl != null" >
+        pic_small_url,
+      </if>
+      <if test="ctime != null" >
+        CTIME,
+      </if>
+      <if test="parentid != null" >
+        PARENTID,
+      </if>
+      <if test="keyword != null" >
+        KEYWORD,
+      </if>
+      <if test="ischeck != null" >
+        ISCHECK,
+      </if>
+      <if test="authorid != null" >
+        AUTHORID,
+      </if>
+      <if test="isdel != null" >
+        ISDEL,
+      </if>
+      <if test="wfrom != null" >
+        WFROM,
+      </if>
+      <if test="vtime != null" >
+        VTIME,
+      </if>
+      <if test="width != null" >
+        WIDTH,
+      </if>
+      <if test="height != null" >
+        HEIGHT,
+      </if>
+      <if test="sizes != null" >
+        SIZES,
+      </if>
+      <if test="isrecommend != null" >
+        ISRECOMMEND,
+      </if>
+      <if test="adminid != null" >
+        ADMINID,
+      </if>
+      <if test="lovetime != null" >
+        LOVETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="picSmallUrl != null" >
+        #{picSmallUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="ischeck != null" >
+        #{ischeck,jdbcType=BIT},
+      </if>
+      <if test="authorid != null" >
+        #{authorid,jdbcType=INTEGER},
+      </if>
+      <if test="isdel != null" >
+        #{isdel,jdbcType=BIT},
+      </if>
+      <if test="wfrom != null" >
+        #{wfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="vtime != null" >
+        #{vtime,jdbcType=INTEGER},
+      </if>
+      <if test="width != null" >
+        #{width,jdbcType=INTEGER},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="sizes != null" >
+        #{sizes,jdbcType=BIGINT},
+      </if>
+      <if test="isrecommend != null" >
+        #{isrecommend,jdbcType=BIT},
+      </if>
+      <if test="adminid != null" >
+        #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="lovetime != null" >
+        #{lovetime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.egov.graph.model.Photo" >
+    update photo
+    <set >
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="picSmallUrl != null" >
+        pic_small_url = #{picSmallUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        CTIME = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="parentid != null" >
+        PARENTID = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="keyword != null" >
+        KEYWORD = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="ischeck != null" >
+        ISCHECK = #{ischeck,jdbcType=BIT},
+      </if>
+      <if test="authorid != null" >
+        AUTHORID = #{authorid,jdbcType=INTEGER},
+      </if>
+      <if test="isdel != null" >
+        ISDEL = #{isdel,jdbcType=BIT},
+      </if>
+      <if test="wfrom != null" >
+        WFROM = #{wfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="vtime != null" >
+        VTIME = #{vtime,jdbcType=INTEGER},
+      </if>
+      <if test="width != null" >
+        WIDTH = #{width,jdbcType=INTEGER},
+      </if>
+      <if test="height != null" >
+        HEIGHT = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="sizes != null" >
+        SIZES = #{sizes,jdbcType=BIGINT},
+      </if>
+      <if test="isrecommend != null" >
+        ISRECOMMEND = #{isrecommend,jdbcType=BIT},
+      </if>
+      <if test="adminid != null" >
+        ADMINID = #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="lovetime != null" >
+        LOVETIME = #{lovetime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.egov.graph.model.Photo" >
+    update photo
+    set TITLE = #{title,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      pic_small_url = #{picSmallUrl,jdbcType=VARCHAR},
+      CTIME = #{ctime,jdbcType=TIMESTAMP},
+      PARENTID = #{parentid,jdbcType=INTEGER},
+      KEYWORD = #{keyword,jdbcType=VARCHAR},
+      ISCHECK = #{ischeck,jdbcType=BIT},
+      AUTHORID = #{authorid,jdbcType=INTEGER},
+      ISDEL = #{isdel,jdbcType=BIT},
+      WFROM = #{wfrom,jdbcType=VARCHAR},
+      VTIME = #{vtime,jdbcType=INTEGER},
+      WIDTH = #{width,jdbcType=INTEGER},
+      HEIGHT = #{height,jdbcType=INTEGER},
+      SIZES = #{sizes,jdbcType=BIGINT},
+      ISRECOMMEND = #{isrecommend,jdbcType=BIT},
+      ADMINID = #{adminid,jdbcType=INTEGER},
+      LOVETIME = #{lovetime,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

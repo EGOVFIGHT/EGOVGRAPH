@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 定义别名 -->
+
+    <typeAliases>
+
+        <typeAlias type="com.egov.photo.model.Admin" alias="Admin"/>
+        <typeAlias type="com.egov.photo.model.Pic" alias="Pic"/>
+        <typeAlias type="com.egov.photo.model.Pictype" alias="Pictype"/>
+        <typeAlias type="com.egov.photo.model.Stat" alias="Stat"/>
+        <typeAlias type="com.egov.photo.model.User" alias="User"/>
+    </typeAliases>
+
+    <!-- 这里不需要再注册mybatis的SQL映射文件 ，因为在Spring的配置文件中配置sqlSessionFactory时注册了mapper的路径-->
+
+</configuration>

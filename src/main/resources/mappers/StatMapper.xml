@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.egov.graph.dao.StatMapper" >
+  <resultMap id="BaseResultMap" type="com.egov.graph.model.Stat" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ALLNUM" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="VIEWALLTIOME" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ALLNUM, VIEWALLTIOME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from stat
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from stat
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.egov.graph.model.Stat" >
+    insert into stat (ID, ALLNUM, VIEWALLTIOME
+      )
+    values (#{id,jdbcType=INTEGER}, #{allnum,jdbcType=BIGINT}, #{viewalltiome,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.egov.graph.model.Stat" >
+    insert into stat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="allnum != null" >
+        ALLNUM,
+      </if>
+      <if test="viewalltiome != null" >
+        VIEWALLTIOME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="allnum != null" >
+        #{allnum,jdbcType=BIGINT},
+      </if>
+      <if test="viewalltiome != null" >
+        #{viewalltiome,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.egov.graph.model.Stat" >
+    update stat
+    <set >
+      <if test="allnum != null" >
+        ALLNUM = #{allnum,jdbcType=BIGINT},
+      </if>
+      <if test="viewalltiome != null" >
+        VIEWALLTIOME = #{viewalltiome,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.egov.graph.model.Stat" >
+    update stat
+    set ALLNUM = #{allnum,jdbcType=BIGINT},
+      VIEWALLTIOME = #{viewalltiome,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

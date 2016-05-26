@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.egov.graph.dao.TypeMapper" >
+  <resultMap id="BaseResultMap" type="com.egov.graph.model.Type" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="TNAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PATH" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="NUM" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="TOTELNUM" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="CTIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TNAME, PATH, NUM, TOTELNUM, CTIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from type
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from type
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.egov.graph.model.Type" >
+    insert into type (ID, TNAME, PATH, 
+      NUM, TOTELNUM, CTIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{num,jdbcType=INTEGER}, #{totelnum,jdbcType=BIGINT}, #{ctime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.egov.graph.model.Type" >
+    insert into type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="tname != null" >
+        TNAME,
+      </if>
+      <if test="path != null" >
+        PATH,
+      </if>
+      <if test="num != null" >
+        NUM,
+      </if>
+      <if test="totelnum != null" >
+        TOTELNUM,
+      </if>
+      <if test="ctime != null" >
+        CTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tname != null" >
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="totelnum != null" >
+        #{totelnum,jdbcType=BIGINT},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.egov.graph.model.Type" >
+    update type
+    <set >
+      <if test="tname != null" >
+        TNAME = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        NUM = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="totelnum != null" >
+        TOTELNUM = #{totelnum,jdbcType=BIGINT},
+      </if>
+      <if test="ctime != null" >
+        CTIME = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.egov.graph.model.Type" >
+    update type
+    set TNAME = #{tname,jdbcType=VARCHAR},
+      PATH = #{path,jdbcType=VARCHAR},
+      NUM = #{num,jdbcType=INTEGER},
+      TOTELNUM = #{totelnum,jdbcType=BIGINT},
+      CTIME = #{ctime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

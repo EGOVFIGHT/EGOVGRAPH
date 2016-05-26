@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.egov.graph.dao.RemarkMapper" >
+  <resultMap id="BaseResultMap" type="com.egov.graph.model.Remark" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PHOTOID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CTIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="REMARKFROMID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.egov.graph.model.Remark" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="PHOTOID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CTIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="REMARKFROMID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CONTEXT" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PHOTOID, CTIME, REMARKFROMID
+  </sql>
+  <sql id="Blob_Column_List" >
+    CONTEXT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from remark
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from remark
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.egov.graph.model.Remark" >
+    insert into remark (ID, PHOTOID, CTIME, 
+      REMARKFROMID, CONTEXT)
+    values (#{id,jdbcType=INTEGER}, #{photoid,jdbcType=INTEGER}, #{ctime,jdbcType=TIMESTAMP}, 
+      #{remarkfromid,jdbcType=INTEGER}, #{context,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.egov.graph.model.Remark" >
+    insert into remark
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="photoid != null" >
+        PHOTOID,
+      </if>
+      <if test="ctime != null" >
+        CTIME,
+      </if>
+      <if test="remarkfromid != null" >
+        REMARKFROMID,
+      </if>
+      <if test="context != null" >
+        CONTEXT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="photoid != null" >
+        #{photoid,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarkfromid != null" >
+        #{remarkfromid,jdbcType=INTEGER},
+      </if>
+      <if test="context != null" >
+        #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.egov.graph.model.Remark" >
+    update remark
+    <set >
+      <if test="photoid != null" >
+        PHOTOID = #{photoid,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null" >
+        CTIME = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarkfromid != null" >
+        REMARKFROMID = #{remarkfromid,jdbcType=INTEGER},
+      </if>
+      <if test="context != null" >
+        CONTEXT = #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.egov.graph.model.Remark" >
+    update remark
+    set PHOTOID = #{photoid,jdbcType=INTEGER},
+      CTIME = #{ctime,jdbcType=TIMESTAMP},
+      REMARKFROMID = #{remarkfromid,jdbcType=INTEGER},
+      CONTEXT = #{context,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.egov.graph.model.Remark" >
+    update remark
+    set PHOTOID = #{photoid,jdbcType=INTEGER},
+      CTIME = #{ctime,jdbcType=TIMESTAMP},
+      REMARKFROMID = #{remarkfromid,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.egov.graph.dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.egov.graph.model.Role" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ROLENAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ROLENUM" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="REMARK" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ROLENAME, ROLENUM, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.egov.graph.model.Role" >
+    insert into role (ID, ROLENAME, ROLENUM, 
+      REMARK)
+    values (#{id,jdbcType=INTEGER}, #{rolename,jdbcType=VARCHAR}, #{rolenum,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.egov.graph.model.Role" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="rolename != null" >
+        ROLENAME,
+      </if>
+      <if test="rolenum != null" >
+        ROLENUM,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="rolenum != null" >
+        #{rolenum,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.egov.graph.model.Role" >
+    update role
+    <set >
+      <if test="rolename != null" >
+        ROLENAME = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="rolenum != null" >
+        ROLENUM = #{rolenum,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.egov.graph.model.Role" >
+    update role
+    set ROLENAME = #{rolename,jdbcType=VARCHAR},
+      ROLENUM = #{rolenum,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

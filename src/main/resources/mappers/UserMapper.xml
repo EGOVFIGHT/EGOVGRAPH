@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.egov.graph.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.egov.graph.model.User" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="SNO" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="PSD" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="CTIME" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="AGE" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BIRTHDAY" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="REALNAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ROLEID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LOVETIME" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="LOGO" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="MOSTTIME" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.egov.graph.model.User" >
+    <constructor >
+      <idArg column="ID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="SNO" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="PSD" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="CTIME" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="AGE" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BIRTHDAY" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="REALNAME" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ROLEID" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="LOVETIME" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="LOGO" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="MOSTTIME" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="INFO" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SNO, PSD, CTIME, AGE, BIRTHDAY, REALNAME, ROLEID, LOVETIME, LOGO, MOSTTIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    INFO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.egov.graph.model.User" >
+    insert into user (ID, SNO, PSD, CTIME, 
+      AGE, BIRTHDAY, REALNAME, 
+      ROLEID, LOVETIME, LOGO, 
+      MOSTTIME, INFO)
+    values (#{id,jdbcType=INTEGER}, #{sno,jdbcType=CHAR}, #{psd,jdbcType=CHAR}, #{ctime,jdbcType=DATE}, 
+      #{age,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{realname,jdbcType=VARCHAR}, 
+      #{roleid,jdbcType=VARCHAR}, #{lovetime,jdbcType=INTEGER}, #{logo,jdbcType=VARCHAR}, 
+      #{mosttime,jdbcType=INTEGER}, #{info,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.egov.graph.model.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="sno != null" >
+        SNO,
+      </if>
+      <if test="psd != null" >
+        PSD,
+      </if>
+      <if test="ctime != null" >
+        CTIME,
+      </if>
+      <if test="age != null" >
+        AGE,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="realname != null" >
+        REALNAME,
+      </if>
+      <if test="roleid != null" >
+        ROLEID,
+      </if>
+      <if test="lovetime != null" >
+        LOVETIME,
+      </if>
+      <if test="logo != null" >
+        LOGO,
+      </if>
+      <if test="mosttime != null" >
+        MOSTTIME,
+      </if>
+      <if test="info != null" >
+        INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sno != null" >
+        #{sno,jdbcType=CHAR},
+      </if>
+      <if test="psd != null" >
+        #{psd,jdbcType=CHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=DATE},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="lovetime != null" >
+        #{lovetime,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="mosttime != null" >
+        #{mosttime,jdbcType=INTEGER},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.egov.graph.model.User" >
+    update user
+    <set >
+      <if test="sno != null" >
+        SNO = #{sno,jdbcType=CHAR},
+      </if>
+      <if test="psd != null" >
+        PSD = #{psd,jdbcType=CHAR},
+      </if>
+      <if test="ctime != null" >
+        CTIME = #{ctime,jdbcType=DATE},
+      </if>
+      <if test="age != null" >
+        AGE = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="realname != null" >
+        REALNAME = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        ROLEID = #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="lovetime != null" >
+        LOVETIME = #{lovetime,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null" >
+        LOGO = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="mosttime != null" >
+        MOSTTIME = #{mosttime,jdbcType=INTEGER},
+      </if>
+      <if test="info != null" >
+        INFO = #{info,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.egov.graph.model.User" >
+    update user
+    set SNO = #{sno,jdbcType=CHAR},
+      PSD = #{psd,jdbcType=CHAR},
+      CTIME = #{ctime,jdbcType=DATE},
+      AGE = #{age,jdbcType=INTEGER},
+      BIRTHDAY = #{birthday,jdbcType=DATE},
+      REALNAME = #{realname,jdbcType=VARCHAR},
+      ROLEID = #{roleid,jdbcType=VARCHAR},
+      LOVETIME = #{lovetime,jdbcType=INTEGER},
+      LOGO = #{logo,jdbcType=VARCHAR},
+      MOSTTIME = #{mosttime,jdbcType=INTEGER},
+      INFO = #{info,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.egov.graph.model.User" >
+    update user
+    set SNO = #{sno,jdbcType=CHAR},
+      PSD = #{psd,jdbcType=CHAR},
+      CTIME = #{ctime,jdbcType=DATE},
+      AGE = #{age,jdbcType=INTEGER},
+      BIRTHDAY = #{birthday,jdbcType=DATE},
+      REALNAME = #{realname,jdbcType=VARCHAR},
+      ROLEID = #{roleid,jdbcType=VARCHAR},
+      LOVETIME = #{lovetime,jdbcType=INTEGER},
+      LOGO = #{logo,jdbcType=VARCHAR},
+      MOSTTIME = #{mosttime,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
